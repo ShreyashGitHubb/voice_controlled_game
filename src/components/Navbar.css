@@ -1,0 +1,30 @@
+/* Navbar Styles */
+.navbar {
+    width: 100%; /* Full width */
+    height: 60px; /* Fixed height */
+    position: fixed; /* Fixed positioning */
+    top: 0; /* Stick to the top */
+    left: 0; /* Stick to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.container-fluid {
+    height: 100%; /* Make the container full height */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Adjust brand font size */
+}
+
+.nav-link {
+    font-size: 1.2rem; /* Adjust link font size */
+}
+
+.btn {
+    margin-left: 10px; /* Space between button and navbar links */
+}
+.main-content {
+    margin-top: 60px; /* Adjust this to match the Navbar height */
+}
