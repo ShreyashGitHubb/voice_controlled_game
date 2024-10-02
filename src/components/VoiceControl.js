@@ -7,10 +7,17 @@ const VoiceControl = ({ onCommand }) => {
   const recognitionRef = useRef(null);
 
   // Define the recognized voice commands
-  const commands = [
-    'one' || '1' || 1, 'two' || '2' || 2, 'three' || '3' || 3, 'four' || '4' || 4, 'five' || '5' || 5, 'six' || '6' || 6, 'seven' || '7' || 7, 'eight' || '8' || 8, 'nine' || '9' || 9,
-    'restart'
-  ];
+  const commands = {
+    "1st": "cell1", "one": "cell1", "1": "cell1",
+    "2nd": "cell2", "two": "cell2", "2": "cell2",
+    "3rd": "cell3", "three": "cell3", "3": "cell3",
+    "4th": "cell4", "four": "cell4", "4": "cell4",
+    "5th": "cell5", "five": "cell5", "5": "cell5",
+    "6th": "cell6", "six": "cell6", "6": "cell6",
+    "7th": "cell7", "seven": "cell7", "7": "cell7",
+    "8th": "cell8", "eight": "cell8", "8": "cell8",
+    "9th": "cell9", "nine": "cell9", "9": "cell9"
+  };
 
   useEffect(() => {
     // Initialize Web Speech API once
@@ -47,9 +54,9 @@ const VoiceControl = ({ onCommand }) => {
   }, [listening]);
 
   const processCommand = useCallback(() => {
-    const cellMatch = command.match(/(one|two|three|four|five|six|seven|eight|nine)/);
+    const cellMatch = Object.keys(commands).find(key => command.includes(key));
     if (cellMatch) {
-      const cellIndex = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'].indexOf(cellMatch[0]);
+      const cellIndex = Object.values(commands).indexOf(commands[cellMatch]);
       const player = turn; // Current player ('X' or 'O')
       onCommand({ player, cellIndex }); // Pass the recognized command to the parent component
       setCommand(''); // Clear command after processing
@@ -61,7 +68,7 @@ const VoiceControl = ({ onCommand }) => {
       setCommand(''); // Clear command after processing
       setTurn('X'); // Reset turn to X
     }
-  }, [command, onCommand, turn]);
+  }, [command, onCommand, turn, commands]);
 
   useEffect(() => {
     if (command) {
